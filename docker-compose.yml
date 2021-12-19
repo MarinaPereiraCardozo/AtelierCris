@@ -1,0 +1,46 @@
+version: "3.7"
+
+services:
+  database:
+    image: postgres
+    container_name: atelier_db
+    restart: unless_stopped
+    ports: 
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=crisatelier
+      - POSTGRES_PASSWORD=crisatelier
+      - POSTGRES_DB=cris_atelier
+    volumes:
+      - pgdata:/data/postgres
+
+  api:
+    build: ./AtelierCrisAPI
+    container_name: atelier_api
+    restart: unless_stopped
+    ports: 
+      - 7070:7070
+    volumes: 
+      - .:/usr/api
+    links:
+      - database
+    depends_on:
+      - database
+
+  client:
+    build: ./AtelierCrisClient
+    container_name: atelier_client
+    restart: unless_stopped
+    ports: 
+      - 7080:7080
+    volumes:
+      - .:/usr/client
+    links:
+      - api
+    depends_on:
+      - api
+
+volumes:
+  pgdata:
+    driver: local
+
