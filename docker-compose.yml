@@ -27,14 +27,14 @@ services:
     depends_on:
       - database
 
-  client:
-    build: ./AtelierCrisClient
-    container_name: atelier_client
+  system:
+    build: ./AtelierCrisSystem
+    container_name: atelier_system
     restart: unless_stopped
     ports: 
       - 3000:3000
     volumes:
-      - .:/usr/client
+      - .:/usr/system
     links:
       - api
     depends_on:

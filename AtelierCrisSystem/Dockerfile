@@ -1,6 +1,6 @@
 FROM node 
 
-WORKDIR /usr/client
+WORKDIR /usr/system
 
 COPY package.json ./
 
