@@ -32,7 +32,7 @@ services:
     container_name: atelier_client
     restart: unless_stopped
     ports: 
-      - 7080:7080
+      - 3000:3000
     volumes:
       - .:/usr/client
     links:
