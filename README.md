@@ -9,10 +9,10 @@ App to manage products, handcrafts and control the database
 ## To do List
 
 ### General
-- [] Create docker-compose file to run all the applications as services in containers
+- [x] Create docker-compose file to run all the applications as services in containers
 
 ### Backend
-- [] Create Connection With Database
+- [x] Create Connection With Database
 - [] Create Entities for "Funcionários", "Categorias", "SubCategoriasArtesanado", "SubCategoriaProduto", "Item"
 - [] Create a Repository for each Entity
 - [] 
