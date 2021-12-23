@@ -12,7 +12,7 @@ class CreateCategoryUseCase {
 
         const categoryAlreadyExists = await this.categoriesRepository.findByName(name)
 
-        if (categoryAlreadyExists.length != 0) {
+        if (categoryAlreadyExists) {
             throw new Error("Category Already Exists!")
         }
 
