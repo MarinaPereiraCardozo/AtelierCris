@@ -4,8 +4,11 @@ import { createCategoryController } from "../modules/categories/useCases/createC
 const categoriesRoutes = Router()
 
 categoriesRoutes.post('/', (request, response) => {
-
     return createCategoryController.handle(request, response)
+})
+
+categoriesRoutes.get('/', (request, response) => {
+    return
 })
 
 export { categoriesRoutes }

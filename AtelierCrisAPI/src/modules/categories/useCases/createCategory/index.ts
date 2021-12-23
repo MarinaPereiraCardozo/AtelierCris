@@ -2,9 +2,9 @@ import { CategoryRepository } from "../../repositories/implementations/CategoryR
 import { CreateCategoryController } from "./createCategoryController";
 import { CreateCategoryUseCase } from "./createCategoryUseCase";
 
-const categoryRepostory = new CategoryRepository()
+const categoryRepository = new CategoryRepository()
 
-const createCategoryUseCase = new CreateCategoryUseCase(categoryRepostory)
+const createCategoryUseCase = new CreateCategoryUseCase(categoryRepository)
 
 const createCategoryController = new CreateCategoryController(createCategoryUseCase)
 
