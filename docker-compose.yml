@@ -5,7 +5,7 @@ services:
     image: postgres
     container_name: atelier_db
     restart: unless-stopped
-    ports: 
+    ports:
       - 5432:5432
     environment:
       - POSTGRES_USER=crisatelier
@@ -13,36 +13,34 @@ services:
       - POSTGRES_DB=cris_atelier
     volumes:
       - pgdata:/data/postgres
+  # api:
+  #   build: ./AtelierCrisAPI/
+  #   container_name: atelier_api
+  #   restart: unless-stopped
+  #   ports: 
+  #     - 7070:7070
+  #   volumes: 
+  #     - .:/api
+  #   links:
+  #     - database
+  #   depends_on:
+  #     - database
 
-  api:
-    build: ./AtelierCrisAPI/
-    container_name: atelier_api
-    restart: unless-stopped
-    ports: 
-      - 7070:7070
-    volumes: 
-      - .:/api
-    links:
-      - database
-    depends_on:
-      - database
-
-  system:
-    build: 
-      context: ./AtelierCrisSystem
-      dockerfile: Dockerfile
-    container_name: atelier_system
-    restart: unless-stopped
-    ports: 
-      - 3000:3000
-    volumes:
-      - .:/system
-    links:
-      - database
-    depends_on:
-      - database
+  # system:
+  #   build: 
+  #     context: ./AtelierCrisSystem
+  #     dockerfile: Dockerfile
+  #   container_name: atelier_system
+  #   restart: unless-stopped
+  #   ports: 
+  #     - 3000:3000
+  #   volumes:
+  #     - .:/system
+  #   links:
+  #     - database
+  #   depends_on:
+  #     - database
 
 volumes:
   pgdata:
     driver: local
-
