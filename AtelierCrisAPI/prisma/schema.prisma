@@ -11,28 +11,48 @@ datasource db {
 }
 
 model Category {
-  id      Int      @id @default(autoincrement())
-  name    String
-  subCategory	SubCategory @relation(fields: [subCategoryId], references: [id])
-  subCategoryId Int @unique
+  id          String        @id @default(uuid())
+  name        String        @unique
+  subCategory SubCategory[]
 }
 
 model SubCategory {
-  id     Int     @id @default(autoincrement())
-  name   String
-  category   Category?
-  item Item @relation(fields: [itemId], references: [id])
-  itemId Int @unique
+  id         String            @id @default(uuid())
+  name       String            @unique
+  category   Category          @relation(fields: [categoryId], references: [id])
+  categoryId String
+  itens      SubCategoryItem[]
 }
 
+model SubCategoryItem {
+  id String @id @default(uuid())
+
+  subCategory   SubCategory @relation(fields: [subCategoryId], references: [id])
+  subCategoryId String
+
+  item   Item   @relation(fields: [itemId], references: [id])
+  itemId String
+
+  @@map("fk_subCategory_item")
+}
 
 model Item {
-	id	Int @id
-	createdAt DateTime @default(now())
-	updatedAt DateTime @updatedAt
-	name String
-	description String
-	stock	Int
-	price String
-	subCategory SubCategory?
+  id            String            @id @default(uuid())
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+  name          String
+  description   String
+  stock         Int
+  price         Float
+  cost          Float
+  subCategories SubCategoryItem[]
+}
+
+model User {
+  id       String @id @default(uuid())
+  name     String
+  cpf      String @unique
+  charge   String
+  email    String @unique
+  password String
 }
