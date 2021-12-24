@@ -1,11 +1,9 @@
-import { Category } from "@prisma/client";
 import { ICategoryRepository } from "../../repositories/ICategoryRepository";
 
-class UpdateCategoryNameUseCase {
-
+class DeleteCategoryUseCase {
     constructor(private categoryRepository: ICategoryRepository) { }
 
-    async execute(name: string, id: string): Promise<Category> {
+    async execute(id: string): Promise<void> {
 
         const categoryExists = await this.categoryRepository.findById(id)
 
@@ -13,10 +11,11 @@ class UpdateCategoryNameUseCase {
             throw new Error(`Category with id ${id} doesn't exists!`)
         }
 
-        const category = await this.categoryRepository.updateName(name, id)
+        await this.categoryRepository.delete(id)
 
-        return category
+        return
     }
+
 }
 
-export { UpdateCategoryNameUseCase }
+export { DeleteCategoryUseCase }

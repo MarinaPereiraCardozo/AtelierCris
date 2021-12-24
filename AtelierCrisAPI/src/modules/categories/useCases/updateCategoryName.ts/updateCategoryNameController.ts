@@ -10,9 +10,14 @@ class UpdateCategoryNameController {
 
         const { name, id } = request.body
 
-        const category = await this.updateCategoryNameUseCase.execute(name, id)
+        try {
+            const category = await this.updateCategoryNameUseCase.execute(name, id)
+            return response.status(200).json(category)
+        } catch (err) {
+            return response.status(404).json({ error: err.message })
+        }
 
-        return response.status(200).json(category)
+
     }
 }
 

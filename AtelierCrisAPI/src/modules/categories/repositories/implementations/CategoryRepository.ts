@@ -5,6 +5,16 @@ import { ICategoryRepository } from "../ICategoryRepository";
 class CategoryRepository implements ICategoryRepository {
     private repository = new PrismaClient()
 
+    async findById(id: string): Promise<Category> {
+        const category = await this.repository.category.findUnique({
+            where: {
+                id: id
+            }
+        })
+
+        return category
+    }
+
     async findByName(name: string): Promise<Category> {
         const category = await this.repository.category.findUnique({
             where: {

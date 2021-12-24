@@ -28,4 +28,17 @@ describe('Update Category', () => {
 
         expect(categoryUpdated.name).toEqual('CategoryNameUpdated')
     })
+
+    it('should not be able to update a category that doesn\'t exists', async () => {
+        expect(async () => {
+            const category = {
+                name: 'CategoryName'
+            }
+
+            await createCategoryUseCase.execute(category)
+
+            await updateCategoryNameUseCase.execute('CategoryNameUpdated', 'Arbitrary-id-just-for-category-does-not-exists')
+
+        }).rejects.toBeInstanceOf(Error)
+    })
 })
