@@ -17,7 +17,9 @@ App to manage products, handcrafts and control the database
 - [] Create a Repository for each Entity
 - [] 
 
-API Documentation on <a href="localhost:7070/api-docs">/api-docs</a>
+API Documentation on 
+
+<a href="http://localhost:7070/api-docs">/api-doc</a>
 
 ### Frontend
 - []
