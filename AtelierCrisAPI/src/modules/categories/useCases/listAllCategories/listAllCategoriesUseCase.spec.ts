@@ -16,4 +16,4 @@ describe("List All Categories", () => {
 
         expect(categories).toBeInstanceOf(Array)
     })
-}) 
+})

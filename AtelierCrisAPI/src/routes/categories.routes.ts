@@ -1,5 +1,7 @@
-import { Router } from "express";
+import { response, Router } from "express";
 import { createCategoryController } from "../modules/categories/useCases/createCategory";
+import { listAllCategoriesController } from "../modules/categories/useCases/listAllCategories";
+import { updateCategoryNameController } from "../modules/categories/useCases/updateCategoryName.ts";
 
 const categoriesRoutes = Router()
 
@@ -8,7 +10,11 @@ categoriesRoutes.post('/', (request, response) => {
 })
 
 categoriesRoutes.get('/', (request, response) => {
-    return
+    return listAllCategoriesController.handle(request, response)
+})
+
+categoriesRoutes.patch('/', (request, response) => {
+    return updateCategoryNameController.handle(request, response)
 })
 
 export { categoriesRoutes }
